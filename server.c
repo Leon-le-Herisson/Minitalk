@@ -6,20 +6,18 @@
 /*   By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:55:12 by bmagere           #+#    #+#             */
-/*   Updated: 2024/06/12 12:31:33 by bmagere          ###   ########.fr       */
+/*   Updated: 2024/06/12 16:48:27 by bmagere          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	write_signal(int signal, siginfo_t *sig, void *content)
+static void	write_signal(int signal, siginfo_t *signals, void *content)
 {
-	static int	i;
-	static char c;
-	static char *str = NULL;
+	static int	i = 0;
+	static char	c = 0;
+	static char	*str = NULL;
 
-	i = 0;
-	c = 0;
 	(void)content;
 	if (signal == SIGUSR1)
 		c |= (1 << i);
@@ -38,22 +36,22 @@ static void	write_signal(int signal, siginfo_t *sig, void *content)
 		i = 0;
 		c = 0;
 	}
-	kill(sig->si_pid, SIGUSR1);
+	kill(signals->si_pid, SIGUSR1);
 }
 
 int	main(void)
 {
 	pid_t				pid;
-	struct sigaction	sig;
+	struct sigaction	signals;
 
+	signals.sa_sigaction = write_signal;
+	signals.sa_flags = SA_SIGINFO;
+	sigemptyset(&signals.sa_mask);
 	pid = getpid();
 	ft_printf("The term's PID is %d\n", pid);
-	sig.sa_sigaction = write_signal;
-	sig.sa_flags = SA_SIGINFO;
-	sigemptyset(&sig.sa_mask);
-	sigaction(SIGUSR1, &sig, NULL);
-	sigaction(SIGUSR2, &sig, NULL);
+	sigaction(SIGUSR1, &signals, NULL);
+	sigaction(SIGUSR2, &signals, NULL);
 	while (1)
-		usleep(300);
+		pause();
 	return (0);
 }

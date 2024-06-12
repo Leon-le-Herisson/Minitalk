@@ -6,7 +6,7 @@
 #    By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 15:04:19 by bmagere           #+#    #+#              #
-#    Updated: 2024/06/12 12:37:35 by bmagere          ###   ########.fr        #
+#    Updated: 2024/06/12 15:34:36 by bmagere          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,6 @@ SERVER 		= server
 HEADER 		= minitalk.h
 
 CC 			= clang
-
 SRC_SERVER	= 	server.c \
 				ft_printf.c \
 				ft_printf_utils.c \
@@ -28,6 +27,8 @@ SRC_CLIENT	= 	client.c \
 
 OBJ_SERVER 	= $(SRC_SERVER:%.c=%.o)
 OBJ_CLIENT 	= $(SRC_CLIENT:%.c=%.o)
+
+CURRENT_DATE = $(shell date +"%d/%m/%Y %H:%M:%S")
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
@@ -42,7 +43,7 @@ $(CLIENT):	$(OBJ_CLIENT)
 	@echo "\\033[1;35m|~~> Client built ! <~~|\\033[1;0m"
 
 clean:
-	@rm -rf %.o
+	@rm -rf *.o
 	@echo "\\033[5;35m|~~> Everything's cleaned ! <~~|\\033[1;0m"
 
 fclean:		clean

@@ -6,17 +6,17 @@
 /*   By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:57:17 by bmagere           #+#    #+#             */
-/*   Updated: 2024/06/12 12:27:58 by bmagere          ###   ########.fr       */
+/*   Updated: 2024/06/12 16:47:03 by bmagere          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int g_flag = 0;
+int			g_flag = 0;
 
-static void	signal_handler(int pid, char c)
+static void	signal_manager(int pid, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 8)
@@ -58,10 +58,10 @@ int	main(int argc, char **argv)
 	signal(SIGUSR1, waiting_signal);
 	while (argv[2][i])
 	{
-		signal_handler(pid, argv[2][i]);
+		signal_manager(pid, argv[2][i]);
 		i++;
 	}
-	signal_handler(pid, '\n');
-	signal_handler(pid, '\0');
+	signal_manager(pid, '\n');
+	signal_manager(pid, argv[2][i]);
 	return (0);
 }
