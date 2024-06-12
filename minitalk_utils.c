@@ -6,7 +6,7 @@
 /*   By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:06:32 by bmagere           #+#    #+#             */
-/*   Updated: 2024/06/12 16:48:06 by bmagere          ###   ########.fr       */
+/*   Updated: 2024/06/12 17:09:15 by bmagere          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,47 @@ static int	ft_strlen(const char *s)
 
 static char	*ft_strdup(const char *s)
 {
-	char	*tab;
+	char	*new_s;
 	int		i;
 
 	i = 0;
 	if (s[0] == '\0')
 		return (NULL);
-	tab = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!tab)
+	new_s = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!new_s)
 		exit (1);
 	while (s[i])
 	{
-		tab[i] = s[i];
+		new_s[i] = s[i];
 		i++;
 	}
-	tab[i] = '\0';
-	return (tab);
+	new_s[i] = '\0';
+	return (new_s);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*tab;
-	int		lens1;
+	char	*new_s;
 	int		i;
+	int		size;
 
 	if (!s2)
 		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
-	lens1 = ft_strlen(s1);
+	size = ft_strlen(s1);
 	i = -1;
-	tab = malloc(sizeof(char) * (lens1 + 1) + 1);
-	if (!tab)
+	new_s = malloc(sizeof(char) * (size + 1) + 1);
+	if (!new_s)
 	{
 		free(s1);
 		exit(1);
 	}
-	while (lens1 > ++i)
-		tab[i] = s1[i];
-	tab[i] = s2[0];
-	tab[++i] = '\0';
+	while (size > ++i)
+		new_s[i] = s1[i];
+	new_s[i] = s2[0];
+	i++;
+	new_s[i] = '\0';
 	free(s1);
-	return (tab);
+	return (new_s);
 }
