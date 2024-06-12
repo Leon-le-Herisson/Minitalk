@@ -6,7 +6,7 @@
 /*   By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:57:17 by bmagere           #+#    #+#             */
-/*   Updated: 2024/06/12 16:47:03 by bmagere          ###   ########.fr       */
+/*   Updated: 2024/06/12 17:53:53 by bmagere          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 3 || argv[2][0] == '\0')
 	{
-		ft_printf("Error : Issue with arguments");
+		ft_printf("Error : Issue with arguments\n");
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
 	if (pid <= 0 || kill(pid, 0))
 	{
-		ft_printf("Error : Invalid PID");
+		ft_printf("Error : Invalid PID\n");
 		return (1);
 	}
 	signal(SIGUSR1, waiting_signal);

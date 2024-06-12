@@ -6,7 +6,7 @@
 #    By: bmagere <bmagere@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 15:04:19 by bmagere           #+#    #+#              #
-#    Updated: 2024/06/12 15:34:36 by bmagere          ###   ########.fr        #
+#    Updated: 2024/06/12 18:01:38 by bmagere          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,6 @@ SRC_CLIENT	= 	client.c \
 
 OBJ_SERVER 	= $(SRC_SERVER:%.c=%.o)
 OBJ_CLIENT 	= $(SRC_CLIENT:%.c=%.o)
-
-CURRENT_DATE = $(shell date +"%d/%m/%Y %H:%M:%S")
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
